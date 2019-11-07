@@ -2,8 +2,8 @@
 default_config:
 
 homeassistant:
-  latitude: 39.058144
-  longitude: -94.279032
+  latitude: !secret my_latitude
+  longitude: !secret my_longitude
   unit_system: imperial
   time_zone: America/Chicago
   customize: !include customize.yaml
@@ -30,7 +30,7 @@ alarm_control_panel:
   platform: alarmdotcom
   username: !secret alarmdotcom_username
   password: !secret alarmdotcom_password
-  
+
 sensor:
   platform: ring
 
@@ -46,7 +46,7 @@ plant:
       moisture: sensor.plant_soil_moisture
     min_moisture: 50
     max_moisture: 80
-    
+
 scene:
   platform: hunterdouglas_powerview
   address: 10.0.0.7
