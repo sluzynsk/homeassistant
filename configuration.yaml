@@ -65,7 +65,7 @@ influxdb:
   default_measurement: state
 
 recorder:
-  db_url: mysql://hass:assistme@core-mariadb/homeassistant?charset=utf8
+  db_url: !secret mysql_url
 
 panel_custom:
   - name: zwavegraph2
