@@ -1,0 +1,74 @@
+---
+default_config:
+
+homeassistant:
+  latitude: 39.058144
+  longitude: -94.279032
+  unit_system: imperial
+  time_zone: America/Chicago
+  customize: !include customize.yaml
+
+lovelace:
+  mode: yaml
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+frontend:
+  themes: !include themes.yaml
+
+ring:
+  username: !secret ring_email
+  password: !secret ring_password
+
+alarm_control_panel:
+  platform: alarmdotcom
+  username: !secret alarmdotcom_username
+  password: !secret alarmdotcom_password
+  
+sensor:
+  platform: ring
+
+binary_sensor:
+  - platform: ring
+
+camera:
+  - platform: ring
+
+plant:
+  office:
+    sensors:
+      moisture: sensor.plant_soil_moisture
+    min_moisture: 50
+    max_moisture: 80
+    
+scene:
+  platform: hunterdouglas_powerview
+  address: 10.0.0.7
+
+sleepiq:
+  username: !secret sleepiq_username
+  password: !secret sleepiq_password
+
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: !secret influx_username
+  password: !secret influx_password
+  max_retries: 3
+  default_measurement: state
+
+recorder:
+  db_url: mysql://hass:assistme@core-mariadb/homeassistant?charset=utf8
+
+panel_custom:
+  - name: zwavegraph2
+    sidebar_title: Z-Wave Graph
+    sidebar_icon: mdi:access-point-network
+    url_path: zwave

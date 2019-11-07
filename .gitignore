@@ -1,0 +1,11 @@
+secrets.yaml
+.HA_VERSION
+.cloud/
+.ring_cache.pickle
+.storage/
+OZW_Log.txt
+home-assistant.log 
+options.xml
+zwcfg*.xml
+zwscene.xml
+pyozw.sqlite

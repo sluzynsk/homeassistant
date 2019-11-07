@@ -1,0 +1,8 @@
+---
+binary_sensor.sleepnumber_steve_crystal_is_in_bed:
+  friendly_name: Crystal Is In Bed
+binary_sensor.sleepnumber_steve_steve_is_in_bed:
+  friendly_name: Steve Is In Bed
+binary_sensor.utility_room_water_sensor_sensor:
+  device_class: moisture
+  

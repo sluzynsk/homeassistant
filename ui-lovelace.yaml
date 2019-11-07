@@ -1,0 +1,153 @@
+---
+title: Home
+views:
+  - badges: []
+    cards:
+      - entity: weather.home
+        name: 'Blue Springs, MO'
+        type: weather-forecast
+      - entities:
+          - entity: binary_sensor.ring_front_door_ding
+            show_last_changed: true
+          - entity: binary_sensor.ring_front_door_motion
+            show_last_changed: true
+        title: Front Door
+        type: glance
+      - type: picture-entity
+        entity: camera.front_door
+        camera_view: live
+    path: default_view
+    title: Home
+  - badges: []
+    cards:
+      - entities:
+          - entity: switch.ihome_smartplug_de4fbd
+          - entity: sensor.basement_temperature
+          - entity: sensor.basement_humidity
+          - entity: sensor.ring_downstairs_wifi_signal_category
+          - entity: sensor.office_motion_sensor_battery_level
+          - entity: binary_sensor.office_motion_sensor_sensor
+        show_header_toggle: false
+        title: Office
+        type: entities
+      - type: plant-status
+        entity: plant.office
+        name: Office Plant
+      - entity: media_player.office_home_mini
+        type: media-control
+    path: office
+    title: Office
+  - badges: []
+    cards:
+      - entity: media_player.family_room
+        type: media-control
+      - entity: media_player.xbr_75x850e
+        type: media-control
+      - entities:
+          - sensor.living_room_temperature
+          - sensor.living_room_humidity
+        show_header_toggle: false
+        title: Environment
+        type: entities
+      - entities:
+          - entity: scene.33310
+            type: entity-button
+            name: Open all
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+          - entity: scene.15890
+            type: entity-button
+            name: Close all
+            tap_action:
+              action: call-service
+              service: scene.turn_on
+        type: glance
+        title: Shades
+      - type: entity-button
+        entity: switch.retro_lamp_relay
+        name: Retro Lamp
+        icon: mdi:lamp
+    path: living-room
+    title: Living Room
+  - badges: []
+    cards:
+      - entities:
+          - sensor.sarah_s_room_temperature
+          - sensor.sarah_s_room_humidity
+        show_header_toggle: false
+        title: Sarah's Room
+        type: entities
+    path: sarahs-room
+    title: Sarah's Room
+  - badges: []
+    cards:
+      - entities:
+          - sensor.master_bedroom_temperature
+          - sensor.master_bedroom_humidity
+        show_header_toggle: false
+        title: Master Bedroom
+        type: entities
+      - entities:
+          - binary_sensor.sleepnumber_steve_steve_is_in_bed
+          - binary_sensor.sleepnumber_steve_crystal_is_in_bed
+        title: Bed
+        type: entities
+        show_header_toggle: false
+    path: master-bedroom
+    title: Master Bedroom
+  - badges: []
+    cards:
+      - entities:
+        - sensor.utility_room_water_sensor_battery_level
+        - binary_sensor.utility_room_water_sensor_sensor
+        show_header_toggle: false
+        type: entities
+        title: Water Sensors
+    title: Utility Room
+    path: utility-room
+  - badges: []
+    cards:
+      - entities:
+        - lock.basement_touchpad_electronic_deadbolt_locked
+        - sensor.basement_touchpad_electronic_deadbolt_battery_level
+        show_header_toggle: false
+        type: entities
+        title: Back door lock
+    title: Basement
+    path: basement
+  - badges: []
+    cards:
+      - entities:
+          - sensor.sarah_s_room_temperature
+          - sensor.sarah_s_room_humidity
+          - sensor.basement_temperature
+          - sensor.basement_humidity
+          - sensor.master_bedroom_temperature
+          - sensor.master_bedroom_humidity
+          - sensor.living_room_temperature
+          - sensor.living_room_humidity
+        type: history-graph
+    panel: true
+    path: temperature-graphs
+    title: Temperature History
+  - badges: []
+    cards:
+      - type: alarm-panel
+        entity: alarm_control_panel.alarm_com
+        name: Speas Drive
+    title: Speas
+    type: entities
+    show_header_toggle: false
+    path: speas
+  - badges: 
+      - person.crystal_luzynski
+      - person.sarah_luzynski
+      - person.steve_luzynski
+    title: People
+    path: people
+    show_header_toggle: false
+
+resources:
+  - url: /community_plugin/username-element/username-element.js
+    type: js
