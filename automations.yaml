@@ -1,0 +1,18 @@
+- id: '1573571236003'
+  alias: Daily Backups
+  description: Do daily backups to Google Drive
+  trigger:
+  - at: '4:00'
+    platform: time
+  condition: []
+  action:
+  - service: rest_command.google_backup
+- id: '1573571285285'
+  alias: Daily Snapshot
+  description: Create a snapshot daily
+  trigger:
+  - at: '3:00'
+    platform: time
+  condition: []
+  action:
+  - service: hassio.snapshot_full

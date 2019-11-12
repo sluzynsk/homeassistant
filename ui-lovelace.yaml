@@ -24,7 +24,6 @@ views:
           - entity: switch.ihome_smartplug_de4fbd
           - entity: sensor.basement_temperature
           - entity: sensor.basement_humidity
-          - entity: sensor.ring_downstairs_wifi_signal_category
           - entity: sensor.office_motion_sensor_battery_level
           - entity: binary_sensor.office_motion_sensor_sensor
         show_header_toggle: false
@@ -68,6 +67,10 @@ views:
         entity: switch.retro_lamp_relay
         name: Retro Lamp
         icon: mdi:lamp
+      - type: entity-button
+        entity: switch.behind_couch_relay
+        name: Ikea Lamps Behind Couch
+        icon: mdi:lamp
     path: living-room
     title: Living Room
   - badges: []
@@ -82,6 +85,12 @@ views:
     title: Sarah's Room
   - badges: []
     cards:
+      - entity: media_player.kitchen
+        type: media-control
+    path: kitchen
+    title: Kitchen
+  - badges: []
+    cards:
       - entities:
           - sensor.master_bedroom_temperature
           - sensor.master_bedroom_humidity
@@ -94,6 +103,8 @@ views:
         title: Bed
         type: entities
         show_header_toggle: false
+      - entity: media_player.master_bedroom
+        type: media-control
     path: master-bedroom
     title: Master Bedroom
   - badges: []
@@ -106,16 +117,6 @@ views:
         title: Water Sensors
     title: Utility Room
     path: utility-room
-  - badges: []
-    cards:
-      - entities:
-        - lock.basement_touchpad_electronic_deadbolt_locked
-        - sensor.basement_touchpad_electronic_deadbolt_battery_level
-        show_header_toggle: false
-        type: entities
-        title: Back door lock
-    title: Basement
-    path: basement
   - badges: []
     cards:
       - entities:

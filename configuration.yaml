@@ -72,3 +72,8 @@ panel_custom:
     sidebar_title: Z-Wave Graph
     sidebar_icon: mdi:access-point-network
     url_path: zwave
+
+rest_command:
+  google_backup:
+    url: 'http://localhost:8055/gb/doBackup'
+    timeout: '300'
