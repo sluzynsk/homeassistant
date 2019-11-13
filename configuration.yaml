@@ -67,13 +67,24 @@ influxdb:
 recorder:
   db_url: !secret mysql_url
 
-panel_custom:
-  - name: zwavegraph2
-    sidebar_title: Z-Wave Graph
-    sidebar_icon: mdi:access-point-network
-    url_path: zwave
-
 rest_command:
   google_backup:
     url: 'http://localhost:8055/gb/doBackup'
     timeout: '300'
+
+panel_iframe:
+  zwave2mqtt:
+    title: Z-Wave to MQTT
+    icon: mdi:z-wave
+    url: http://10.0.0.190:8091
+
+mqtt:
+  discovery: true
+  discovery_prefix: 'ha'
+  broker: mosquitto_core
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'

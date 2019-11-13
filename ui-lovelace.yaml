@@ -24,7 +24,7 @@ views:
           - entity: switch.ihome_smartplug_de4fbd
           - entity: sensor.basement_temperature
           - entity: sensor.basement_humidity
-          - entity: sensor.office_motion_sensor_battery_level
+          - entity: sensor.office_motion_sensor_battery
           - entity: binary_sensor.office_motion_sensor_sensor
         show_header_toggle: false
         title: Office
