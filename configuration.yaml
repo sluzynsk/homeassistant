@@ -1,5 +1,31 @@
 ---
-default_config:
+cloud:
+
+config:
+
+history:
+  include:
+    domains:
+      - sensor
+      - switch
+      - person
+
+logbook:
+  exclude:
+    domains:
+      - sun
+      
+mobile_app:
+
+person:
+
+ssdp:
+
+sun:
+
+system_health:
+
+zeroconf:
 
 homeassistant:
   latitude: !secret my_latitude
@@ -88,3 +114,23 @@ mqtt:
   will_message:
     topic: 'hass/status'
     payload: 'offline'
+
+device_tracker:
+  - platform: xfinity
+    host: 10.0.0.1
+    new_device_defaults:
+      track_new_devices: false
+      hide_if_away: false
+    interval_seconds: 30
+    consider_home: 180
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_api_token
+    allowed_chat_ids:
+      - !secret telegram_chat_id
+
+notify:
+  - name: telegram
+    platform: telegram
+    chat_id: !secret telegram_chat_id

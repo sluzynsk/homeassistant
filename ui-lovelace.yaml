@@ -110,7 +110,7 @@ views:
   - badges: []
     cards:
       - entities:
-        - sensor.utility_room_water_sensor_battery_level
+        - sensor.utility_room_water_sensor_battery
         - binary_sensor.utility_room_water_sensor_sensor
         show_header_toggle: false
         type: entities
