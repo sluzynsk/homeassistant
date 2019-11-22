@@ -9,6 +9,7 @@ history:
       - sensor
       - switch
       - person
+      - binary_sensor
 
 logbook:
   exclude:
@@ -46,7 +47,7 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 
 frontend:
-  themes: !include themes.yaml
+  themes: !include_dir_merge_named themes
 
 ring:
   username: !secret ring_email
@@ -106,7 +107,7 @@ panel_iframe:
 
 mqtt:
   discovery: true
-  discovery_prefix: 'ha'
+  discovery_prefix: 'homeassistant'
   broker: mosquitto_core
   birth_message:
     topic: 'hass/status'
@@ -134,3 +135,7 @@ notify:
   - name: telegram
     platform: telegram
     chat_id: !secret telegram_chat_id
+
+weather:
+  - platform: darksky
+    api_key: b989fe8800c82df65727932a5d1d1118

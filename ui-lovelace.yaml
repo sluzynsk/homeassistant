@@ -3,7 +3,7 @@ title: Home
 views:
   - badges: []
     cards:
-      - entity: weather.home
+      - entity: weather.dark_sky
         name: 'Blue Springs, MO'
         type: weather-forecast
       - entities:
@@ -25,7 +25,7 @@ views:
           - entity: sensor.basement_temperature
           - entity: sensor.basement_humidity
           - entity: sensor.office_motion_sensor_battery
-          - entity: binary_sensor.office_motion_sensor_sensor
+          - entity: binary_sensor.office_motion_sensor_contact
         show_header_toggle: false
         title: Office
         type: entities
@@ -71,6 +71,10 @@ views:
         entity: switch.behind_couch_relay
         name: Ikea Lamps Behind Couch
         icon: mdi:lamp
+      - type: entity-button
+        entity: switch.xmas_tree
+        name: Xmas Tree
+        icon: mdi:pine-tree
     path: living-room
     title: Living Room
   - badges: []
@@ -111,7 +115,7 @@ views:
     cards:
       - entities:
         - sensor.utility_room_water_sensor_battery
-        - binary_sensor.utility_room_water_sensor_sensor
+        - binary_sensor.utility_room_water_sensor_contact
         show_header_toggle: false
         type: entities
         title: Water Sensors
@@ -134,13 +138,44 @@ views:
     title: Temperature History
   - badges: []
     cards:
-      - type: alarm-panel
-        entity: alarm_control_panel.alarm_com
-        name: Speas Drive
-    title: Speas
-    type: entities
+      - entities:
+        - entity: light.splash_light_1
+        - type: 'custom:rgb-light-card'
+          entity: light.splash_light_1
+          colors:
+            - rgb_color:
+              - 0
+              - 255
+              - 0
+              brightness: 220
+              transition: 1
+            - rgb_color:
+              - 255
+              - 0
+              - 0
+              brightness: 220
+              transition: 1
+        - entity: light.splash_light_2
+        - type: 'custom:rgb-light-card'
+          entity: light.splash_light_2
+          colors:
+            - rgb_color:
+              - 0
+              - 255
+              - 0
+              brightness: 220
+              transition: 1
+            - rgb_color:
+              - 255
+              - 0
+              - 0
+              brightness: 220
+              transition: 1
+        title: Front Yard Splash Lights
+        type: entities
     show_header_toggle: false
-    path: speas
+    title: Front Yard
+    path: front-yard
   - badges:
       - person.crystal_luzynski
       - person.sarah_luzynski
@@ -151,4 +186,8 @@ views:
 
 resources:
   - url: /community_plugin/username-element/username-element.js
+    type: js
+  - url: https://cdn.jsdelivr.net/npm/rgb-light-card
+    type: js
+  - url: /community_plugin/synthwave-hass-extras/synthwave-hass-extras.js
     type: js
