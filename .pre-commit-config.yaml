@@ -12,7 +12,7 @@ repos:
       - id: check-added-large-files
       - id: check-json
       - id: check-merge-conflict
-      - id: check-symlinks
+        #      - id: check-symlinks
       - id: mixed-line-ending
       - id: check-xml
       - id: check-yaml

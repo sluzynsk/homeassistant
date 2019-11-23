@@ -10,3 +10,4 @@ zwcfg*.xml
 zwscene.xml
 pyozw.sqlite
 known_devices.yaml
+__pycache__
