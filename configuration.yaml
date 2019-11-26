@@ -63,6 +63,14 @@ sensor:
 
 binary_sensor:
   - platform: ring
+  - platform: mqtt
+    name: 'Xmas_tree_remote_on'
+    state_topic: 'home/remote_1_button_1'
+    off_delay: 1
+  - platform: mqtt
+    name: 'Xmas_tree_remote_off'
+    state_topic: 'home/remote_1_button_2'
+    off_delay: 1
 
 camera:
   - platform: ring
@@ -139,3 +147,5 @@ notify:
 weather:
   - platform: darksky
     api_key: b989fe8800c82df65727932a5d1d1118
+
+python_script:

@@ -16,3 +16,36 @@
   condition: []
   action:
   - service: hassio.snapshot_full
+- alias: rfbridge_demultiplexer
+  trigger:
+  - platform: mqtt
+    topic: rfbridge/tele/RESULT
+  action:
+  - service: python_script.rfbridge_demux
+    data_template:
+      payload: '{{trigger.payload_json.RfReceived.Data}}'
+  id: ac2012f9731d497e8c073d4d90c79fe3
+- id: '1574804485540'
+  alias: Xmas Tree On
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.xmas_tree_remote_on
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.xmas_tree
+    service: switch.turn_on
+- id: '1574805062180'
+  alias: Xmas Tree Off
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.xmas_tree_remote_off
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.xmas_tree
+    service: switch.turn_off
