@@ -32,6 +32,9 @@ views:
       - type: plant-status
         entity: plant.office
         name: Office Plant
+      - type: light
+        entity: light.office_lights
+        name: Office Light
       - entity: media_player.office_home_mini
         type: media-control
     path: office
@@ -188,6 +191,4 @@ resources:
   - url: /community_plugin/username-element/username-element.js
     type: js
   - url: https://cdn.jsdelivr.net/npm/rgb-light-card
-    type: js
-  - url: /community_plugin/synthwave-hass-extras/synthwave-hass-extras.js
     type: js

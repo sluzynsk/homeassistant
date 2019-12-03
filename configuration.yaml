@@ -149,3 +149,17 @@ weather:
     api_key: b989fe8800c82df65727932a5d1d1118
 
 python_script:
+
+light:
+  - platform: group
+    name: Office Lights
+    entities:
+      - light.office_lohas_1
+      - light.office_lohas_2
+
+panel_custom:
+  - name: tasmota
+    sidebar_title: Tasmota Devices
+    sidebar_icon: mdi:devices
+    url_path: tasmota
+
