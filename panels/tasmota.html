@@ -21,26 +21,25 @@
             </app-header>
 
             <div class='content'>
-                <div class="mdc-data-table">
-                <table class="mdc-data-table__table">
+                <table>
                     <thead>
-                        <tr class="mdc-data-table__header-row">
-                            <th class=mdc-data-table__header-cell role="columnheader" scope="col"></th>
-                            <th class=mdc-data-table__header-cell role="columnheader" scope="col">Entity ID</th>
-                            <th class=mdc-data-table__header-cell role="columnheader" scope="col">Friendly Name</th>
-                            <th class=mdc-data-table__header-cell role="columnheader" scope="col">IP Address</th>
-                            <th class=mdc-data-table__header-cell role="columnheader" scope="col">Version</th>
+                        <tr>
+                            <th></th>
+                            <th>Entity ID</th>
+                            <th>Friendly Name</th>
+                            <th>IP Address</th>
+                            <th>Version</th>
                         </tr>
                     </thead>
-                    <tbody class="mdc-data-table__content">
+                    <tbody>
                         <template is="dom-repeat" items='[[devices]]' as='entity'>
-                            <tr class="mdc-data-table__row">
+                            <tr>
                             <div class="tappable" on-tap='entityTapped' data-entity$='[[entity.entity_id]]'>
-                                <td class="mdc-data-table__cell"><paper-checkbox hass='[[hass]]'></paper-checkbox></td>
-                                <td class="mdc-data-table__cell">[[entity.entity_id]]</td>
-                                <td class="mdc-data-table__cell">[[entity.attributes.friendly_name]]</td>
-                                <td class="mdc-data-table__cell">[[entity.attributes.IPAddress]]</td>
-                                <td class="mdc-data-table__cell">[[entity.attributes.Version]]</td>
+                                <td><paper-checkbox hass='[[hass]]'></paper-checkbox></td>
+                                <td>[[entity.entity_id]]</td>
+                                <td>[[entity.attributes.friendly_name]]</td>
+                                <td>[[entity.attributes.IPAddress]]</td>
+                                <td>[[entity.attributes.Version]]</td>
                             </div>
                         </tr>
                         </template> 

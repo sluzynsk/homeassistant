@@ -6,17 +6,15 @@ Current bits of interest:
 3. Sonos integrations
 4. Plant monitor in the office
 5. Hunter-Douglas Powerview scene integration (mostly working)
-6. ZWave is garbage but it's there
+6. ZWave via MQTT because the build in zwave stuff sucks
 7. Alarm.com arm/disarm/status support
 8. Automated backups to GDrive
 9. Node-RED automations for lights
+10. Tasmota panel - lists firmware versions and IP addresses currently
 
 To-dos:
 1. More ESPHomes once I get my 3d printer fixed
-2. Figure out how to make Zwave not suck
-3. Sonoff 433MHz bridge integration once it arrives from China
-4. Set up 433MHz remotes with Sonoff bridge once they arrive from China
-5. Make it look nicer
-6. Set up AppDaemon dashboard for tablets
+2. Set up AppDaemon dashboard for tablets
+3. Finish Tasmota panel to add firmware updating
 
 
