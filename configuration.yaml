@@ -15,7 +15,7 @@ logbook:
   exclude:
     domains:
       - sun
-      
+
 mobile_app:
 
 person:
@@ -70,6 +70,14 @@ binary_sensor:
   - platform: mqtt
     name: 'Xmas_tree_remote_off'
     state_topic: 'home/remote_1_button_2'
+    off_delay: 1
+  - platform: mqtt
+    name: 'Office_remote_top_button'
+    state_topic: 'home/office_remote_b1'
+    off_delay: 1
+  - platform: mqtt
+    name: 'Office_remote_bottom_button'
+    state_topic: 'home/office_remote_b2'
     off_delay: 1
 
 camera:
