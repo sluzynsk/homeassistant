@@ -67,11 +67,11 @@ views:
         type: glance
         title: Shades
       - type: entity-button
-        entity: switch.retro_lamp_relay
+        entity: switch.retro_lamp
         name: Retro Lamp
         icon: mdi:lamp
       - type: entity-button
-        entity: switch.behind_couch_relay
+        entity: switch.behind_couch
         name: Ikea Lamps Behind Couch
         icon: mdi:lamp
       - type: entity-button
@@ -94,6 +94,8 @@ views:
     cards:
       - entity: media_player.kitchen
         type: media-control
+      - entity: light.kitchen_led
+        type: light
     path: kitchen
     title: Kitchen
   - badges: []
