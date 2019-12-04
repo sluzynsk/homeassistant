@@ -1,3 +1,30 @@
+<!--
+    Tasmota Device Management panel for Home Assistant
+    (c)2019 Steve Luzynski - steve@luzynski.net
+
+    V.9 - Initial public beta. Some wonkiness around the hass object refreshing but the check boxes not following
+    the correct devices when that happens. Also when you hit update and the devices go offline, the check boxes move
+    and get out of sync with the selection state.
+
+    I need to learn Polymer better. Also, frontend development for HA is wildly undocumented. Wtf.
+
+    Why is this better than TasmoAdmin, you may be asking?
+    1. Lightweight. No container, no device database.
+    2. Tailored to the needs of a HomeAssistant user - uses the HA device DB to locate devices, for example. 
+    3. Follows the theme of your HA install. Or maybe it doesn't. I want it to but I'm tired for the day.
+    4. No needless options to turn stuff off/on, etc. - let HA manage that like it's meant to.
+
+    To-do's:
+    1. Do something to indicate what's happening with device updates. They work, but CORS is keeping the result
+       codes away from me which sucks.
+    2. Test themes.
+    3. Select all checkbox for the super brave.
+    4. Move that damned button over a little.
+    5. Display the current Tasmota version in the banner so you can tell if you actually need to update shit.
+    6. Sortable columns.
+    7. Maybe add more shit to the display, like uptime or whatever. I dunno. 
+-->
+
 <dom-module id='ha-panel-tasmota'>
     <template>
         <style include="ha-style">
@@ -134,8 +161,9 @@ Polymer({
             .then(res=>{console.log(res)})
             .catch(error=>console.log(error));
         }
-        // need to uncheck all the boxes or just refresh myself
-        location.reload(true);
+        // need to uncheck all the boxes or shit goes wonky
+        this.$.selector.clearSelection(); // that takes care of the selected state but not the boxes
+        // how do i clear the boxes when i can't talk to them? 
     },
 
 });
