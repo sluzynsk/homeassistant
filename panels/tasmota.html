@@ -11,6 +11,7 @@
                 @apply(--paper-font-headline);
             }
         </style>    
+        <link href="//cdn.muicss.com/mui-0.10.0/extra/mui-noglobals.min.css" rel="stylesheet" type="text/css" />
 
         <app-header-layout has-scrolling-region>
             <app-header slot="header" fixed>
@@ -21,32 +22,43 @@
             </app-header>
 
             <div class='content'>
-                <table>
+                <fieldset>
+                    <legend>Devices</legend>
+                    <form>
+                <table class="mui-table">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th><iron-icon icon="mdi:update" item-icon></iron-icon> Friendly Name</th>
                             <th>Entity ID</th>
-                            <th>Friendly Name</th>
-                            <th>IP Address</th>
+                            <th><iron-icon icon="mdi:wifi" item-icon></iron-icon></th>
+                            <th><iron-icon icon="mdi:ip" item-icon></iron-icon></th>
                             <th>Version</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <template is="dom-repeat" items='[[devices]]' as='entity'>
+                        <template is="dom-repeat" items='[[devices]]' as='entity' id='deviceList' mutable-data>
                             <tr>
-                            <div class="tappable" on-tap='entityTapped' data-entity$='[[entity.entity_id]]'>
-                                <td><paper-checkbox hass='[[hass]]'></paper-checkbox></td>
-                                <td>[[entity.entity_id]]</td>
-                                <td>[[entity.attributes.friendly_name]]</td>
-                                <td>[[entity.attributes.IPAddress]]</td>
+                                <td><paper-checkbox hass='[[hass]]' data-entity$='[[entity.entity_id]]' on-tap='toggleSelection'>[[entity.attributes.friendly_name]]</paper-checkbox></td>
+                                <td><span title="Click for details panel"  class="tappable" on-tap='entityTapped' data-entity$='[[entity.entity_id]]'>[[entity.entity_id]]</span></td>
+                                <td>[[entity.attributes.RSSI]]</td>
+                                <td><span title="Click for device web page"  class="tappable" on-tap='addressTapped' data-entity$='[[entity.attributes.IPAddress]]'>[[entity.attributes.IPAddress]]</span></td>
                                 <td>[[entity.attributes.Version]]</td>
-                            </div>
-                        </tr>
+                            </tr>
                         </template> 
+                        <array-selector id="selector" items="{{devices}}" selected="{{selected}}" multi toggle></array-selector>
                     </tbody>
                 </table>
+                </fieldset>
                 </div>
-                <mwc-button hass='[[hass]]' raised=>Update checked</mwc-button>
+                <mwc-button hass='[[hass]]' raised='' type='submit' on-tap='updatePressed'>Update checked</mwc-button>
+ <!--               <fieldset>
+                    <legend>Selected for upgrade</legend>
+                    <template is="dom-repeat" items='{{selected}}'>
+                            <span><p>{{item.entity_id}}</p></span>
+                    </template>
+                </fieldset>
+-->
+            </form>
             </div>
         </app-header-layout>
     </template>
@@ -57,11 +69,11 @@ Polymer({
     is:  'ha-panel-tasmota',
 
     properties: {   
-        hass:     { type: Object },
-        panel:    { type: Object },
-        narrow:   { type: Boolean, value: false },
-        showMenu: { type: Boolean, value: false },
-        devices:  { type: Array, computed: 'computeDevices(hass)' },
+        hass:        { type: Object },
+        panel:       { type: Object },
+        narrow:      { type: Boolean, value: false },
+        showMenu:    { type: Boolean, value: false },
+        devices:     { type: Array, computed: 'computeDevices(hass)' },
     },
 
     observers: [ 'onPanelUpdate(hass, panel)' ],
@@ -88,9 +100,43 @@ Polymer({
         this.fire('hass-more-info', { entityId: entityId });
     },
 
+    toggleSelection: function(ev) {
+        ev.stopPropagation();
+        var item = this.$.deviceList.itemForElement(ev.target);
+        this.$.selector.select(item);
+    },
+
+    addressTapped: function(ev) {
+        ev.stopPropagation();
+        const url = "http://" + ev.target.getAttribute('data-entity');
+        window.open(url, '_blank');
+    },
+
     onPanelUpdate: function(hass, panel) {
         this.devices = this.computeDevices(hass);
-    }
+    },
+
+    updatePressed: function(ev) {
+        // URL for upgrade looks like http://10.0.0.51/u1?o=http%3A%2F%2Fthehackbox.org%2Ftasmota%2Frelease%2Ftasmota.bin
+        ev.stopPropagation();
+        let item = new Object();
+        const addedParam = {
+            headers: {
+                "Accept-Language":"en-US",
+                "content-type": "text/plain"
+            },
+            method:"GET"
+        }
+
+        for (item in this.$.selector.selected) {
+            let url = "http://" + this.$.selector.selected[item].attributes.IPAddress + "/cm?cmnd=Upgrade%201";
+            fetch(url, addedParam)
+            .then(res=>{console.log(res)})
+            .catch(error=>console.log(error));
+        }
+        // need to uncheck all the boxes or just refresh myself
+        location.reload(true);
+    },
 
 });
      
