@@ -49,3 +49,51 @@
   - data:
       entity_id: switch.xmas_tree
     service: switch.turn_off
+- id: '1575669296134'
+  alias: Turn on kitchen led at sunset
+  description: ''
+  trigger:
+  - event: sunset
+    platform: sun
+  condition: []
+  action:
+  - device_id: 4b9664338d2d4d88b65ca5e673f96ed7
+    domain: light
+    entity_id: light.kitchen_led
+    type: turn_on
+- id: '1575669351282'
+  alias: Turn off kitchen led at night
+  description: ''
+  trigger:
+  - at: '23:30'
+    platform: time
+  condition: []
+  action:
+  - device_id: 4b9664338d2d4d88b65ca5e673f96ed7
+    domain: light
+    entity_id: light.kitchen_led
+    type: turn_off
+- id: '1576080686658'
+  alias: turn on retro lamp at sunset
+  description: ''
+  trigger:
+  - event: sunset
+    platform: sun
+  condition: []
+  action:
+  - device_id: e642a488b5704c30869ad499eaf607af
+    domain: switch
+    entity_id: switch.retro_lamp
+    type: turn_on
+- id: '1576080735886'
+  alias: turn off retro lamp at night
+  description: ''
+  trigger:
+  - at: '23:30'
+    platform: time
+  condition: []
+  action:
+  - device_id: e642a488b5704c30869ad499eaf607af
+    domain: switch
+    entity_id: switch.retro_lamp
+    type: turn_off

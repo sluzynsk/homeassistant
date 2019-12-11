@@ -1,8 +1,11 @@
 d = {
     "5A57A1": ["remote_1_button_1", "ON", "false"],
     "5A57A8": ["remote_1_button_2", "ON", "false"],
-    "1832A1": ["office_remote_b1", "ON", "false"],
-    "1832A8": ["office_remote_b2", "ON", "false"],
+    "DF3E94": ["office_remote_b1", "ON", "false"],
+    "DF3E98": ["office_remote_b2", "ON", "false"],
+    "DF3E91": ["office_remote_b3", "ON", "false"],
+    "DF3E92": ["office_remote_b4", "ON", "false"],
+    "727D06": ["living_room_remote_on", "ON", "false"],
 }
 
 p = data.get("payload")

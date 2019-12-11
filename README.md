@@ -10,11 +10,11 @@ Current bits of interest:
 7. Alarm.com arm/disarm/status support
 8. Automated backups to GDrive
 9. Node-RED automations for lights
-10. Tasmota panel - lists firmware versions and IP addresses currently
+10. Tasmota panel
 
 To-dos:
 1. More ESPHomes once I get my 3d printer fixed
 2. Set up AppDaemon dashboard for tablets
-3. Finish Tasmota panel to add firmware updating
+
 
 

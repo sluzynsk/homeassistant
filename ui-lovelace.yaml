@@ -16,25 +16,37 @@ views:
       - type: picture-entity
         entity: camera.front_door
         camera_view: live
+        state_filter:
+          - null
     path: default_view
     title: Home
   - badges: []
     cards:
       - entities:
-          - entity: switch.ihome_smartplug_de4fbd
           - entity: sensor.basement_temperature
           - entity: sensor.basement_humidity
-          - entity: sensor.office_motion_sensor_battery
-          - entity: binary_sensor.office_motion_sensor_contact
+          - entity: binary_sensor.office_motion_sensor_9
         show_header_toggle: false
         title: Office
         type: entities
       - type: plant-status
         entity: plant.office
         name: Office Plant
+      - type: custom:light-with-profiles
+        title: Office Light
+        entities:
+          - entity: light.office_lights
+            name: 'Overhead Lights'
+            profiles:
+              - name: relax
+                icon: mdi:meditation
+              - name: energize
+                icon: mdi:bike
+              - name: reading
+                icon: mdi:library
       - type: light
-        entity: light.office_lights
-        name: Office Light
+        entity: light.wledoffice
+        name: Office WLed
       - entity: media_player.office_home_mini
         type: media-control
     path: office
@@ -119,28 +131,21 @@ views:
   - badges: []
     cards:
       - entities:
-        - sensor.utility_room_water_sensor_battery
-        - binary_sensor.utility_room_water_sensor_contact
+        - lock.back_door_8
+        type: entities
+        show_header_toggle: false
+        title: Back Door Lock
+    title: Basement
+    path: basement
+  - badges: []
+    cards:
+      - entities:
+        - binary_sensor.utility_room_water_10
         show_header_toggle: false
         type: entities
         title: Water Sensors
     title: Utility Room
     path: utility-room
-  - badges: []
-    cards:
-      - entities:
-          - sensor.sarah_s_room_temperature
-          - sensor.sarah_s_room_humidity
-          - sensor.basement_temperature
-          - sensor.basement_humidity
-          - sensor.master_bedroom_temperature
-          - sensor.master_bedroom_humidity
-          - sensor.living_room_temperature
-          - sensor.living_room_humidity
-        type: history-graph
-    panel: true
-    path: temperature-graphs
-    title: Temperature History
   - badges: []
     cards:
       - entities:
@@ -181,16 +186,44 @@ views:
     show_header_toggle: false
     title: Front Yard
     path: front-yard
-  - badges:
-      - person.crystal_luzynski
-      - person.sarah_luzynski
-      - person.steve_luzynski
-    title: People
-    path: people
-    show_header_toggle: false
+  - badges: []
+    cards:
+      - entities:
+          - entity: light.wled_porch
+          - entity: sensor.wled_porch_estimated_current
+          - entity: sensor.wled_porch_free_memory
+        title: Deck LED Strip
+        type: entities
+        show_header_toggle: false
+    title: Back Yard
+    path: back-yard
+  - badges: []
+    cards:
+      - entities:
+          - sensor.sarah_s_room_temperature
+          - sensor.sarah_s_room_humidity
+          - sensor.basement_temperature
+          - sensor.basement_humidity
+          - sensor.master_bedroom_temperature
+          - sensor.master_bedroom_humidity
+          - sensor.living_room_temperature
+          - sensor.living_room_humidity
+        type: history-graph
+    panel: true
+    path: temperature-graphs
+    title: Temperature History
 
+# Custom lovelace cards, etc.
 resources:
-  - url: /community_plugin/username-element/username-element.js
-    type: js
   - url: https://cdn.jsdelivr.net/npm/rgb-light-card
     type: js
+
+  - type: module
+    url: /local/community/lovelace-light-with-profiles/light-with-profiles.js
+
+# included here so custom light profile card can show active profile
+light_profiles:
+  relax: '0.5119,0.4147,144'
+  concentrate: '0.5119,0.4147,219'
+  energize: '0.368,0.3686,203'
+  reading: '0.4448,0.4066,240'

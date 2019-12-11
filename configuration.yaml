@@ -53,31 +53,45 @@ ring:
   username: !secret ring_email
   password: !secret ring_password
 
-alarm_control_panel:
-  platform: alarmdotcom
-  username: !secret alarmdotcom_username
-  password: !secret alarmdotcom_password
-
 sensor:
   platform: ring
 
 binary_sensor:
   - platform: ring
+
   - platform: mqtt
     name: 'Xmas_tree_remote_on'
     state_topic: 'home/remote_1_button_1'
     off_delay: 1
+
   - platform: mqtt
     name: 'Xmas_tree_remote_off'
     state_topic: 'home/remote_1_button_2'
     off_delay: 1
+
   - platform: mqtt
-    name: 'Office_remote_top_button'
+    name: 'Office_remote_b1'
     state_topic: 'home/office_remote_b1'
     off_delay: 1
+
   - platform: mqtt
-    name: 'Office_remote_bottom_button'
+    name: 'Office_remote_b2'
     state_topic: 'home/office_remote_b2'
+    off_delay: 1
+
+  - platform: mqtt
+    name: 'Office_remote_b3'
+    state_topic: 'home/office_remote_b3'
+    off_delay: 1
+
+  - platform: mqtt
+    name: 'Office_remote_b4'
+    state_topic: 'home/office_remote_b4'
+    off_delay: 1
+
+  - platform: mqtt
+    name: 'Living_room_remote_on'
+    state_topic: 'home/living_room_remote_on'
     off_delay: 1
 
 camera:
@@ -92,7 +106,7 @@ plant:
 
 scene:
   platform: hunterdouglas_powerview
-  address: 10.0.0.7
+  address: 10.0.0.6
 
 sleepiq:
   username: !secret sleepiq_username
@@ -114,12 +128,6 @@ rest_command:
   google_backup:
     url: 'http://localhost:8055/gb/doBackup'
     timeout: '300'
-
-panel_iframe:
-  zwave2mqtt:
-    title: Z-Wave to MQTT
-    icon: mdi:z-wave
-    url: http://10.0.0.190:8091
 
 mqtt:
   discovery: true
@@ -170,4 +178,7 @@ panel_custom:
     sidebar_title: Tasmota Devices
     sidebar_icon: mdi:devices
     url_path: tasmota
+
+vera:
+  vera_controller_url: http://10.0.133:3480/
 
