@@ -10,7 +10,7 @@
 
     Why is this better than TasmoAdmin, you may be asking?
     1. Lightweight. No container, no device database.
-    2. Tailored to the needs of a HomeAssistant user - uses the HA device DB to locate devices, for example. 
+    2. Tailored to the needs of a HomeAssistant user - uses the HA device DB to locate devices, for example.
     3. Follows the theme of your HA install. Or maybe it doesn't. I want it to but I'm tired for the day.
     4. No needless options to turn stuff off/on, etc. - let HA manage that like it's meant to.
 
@@ -22,7 +22,7 @@
     4. Move that damned button over a little.
     5. Display the current Tasmota version in the banner so you can tell if you actually need to update shit.
     6. Sortable columns.
-    7. Maybe add more shit to the display, like uptime or whatever. I dunno. 
+    7. Maybe add more shit to the display, like uptime or whatever. I dunno.
 -->
 
 <dom-module id='ha-panel-tasmota'>
@@ -37,7 +37,7 @@
             .title {
                 @apply(--paper-font-headline);
             }
-        </style>    
+        </style>
         <link href="//cdn.muicss.com/mui-0.10.0/extra/mui-noglobals.min.css" rel="stylesheet" type="text/css" />
 
         <app-header-layout has-scrolling-region>
@@ -59,7 +59,9 @@
                             <th>Entity ID</th>
                             <th><iron-icon icon="mdi:wifi" item-icon></iron-icon></th>
                             <th><iron-icon icon="mdi:ip" item-icon></iron-icon></th>
-                            <th>Version</th>
+                            <th>Current Version - Latest is <a href="https://github.com/arendst/Tasmota/releases/latest">
+                                <img src="https://img.shields.io/github/release/arendst/Tasmota.svg">
+                            </a></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,7 +73,7 @@
                                 <td><span title="Click for device web page"  class="tappable" on-tap='addressTapped' data-entity$='[[entity.attributes.IPAddress]]'>[[entity.attributes.IPAddress]]</span></td>
                                 <td>[[entity.attributes.Version]]</td>
                             </tr>
-                        </template> 
+                        </template>
                         <array-selector id="selector" items="{{devices}}" selected="{{selected}}" multi toggle></array-selector>
                     </tbody>
                 </table>
@@ -91,11 +93,11 @@
     </template>
 </dom-module>
 
-<script>  
+<script>
 Polymer({
     is:  'ha-panel-tasmota',
 
-    properties: {   
+    properties: {
         hass:        { type: Object },
         panel:       { type: Object },
         narrow:      { type: Boolean, value: false },
@@ -111,13 +113,13 @@ Polymer({
         let item = new Object();
 
         for (item in hass.states)
-        {   
+        {
             if (item.indexOf("sensor.") != 0)
                 continue;
             if (typeof(hass.states[item].attributes.Version) === "undefined")
                 continue;
-            states.push(hass.states[item]); 
-        }   
+            states.push(hass.states[item]);
+        }
         return states;
     },
 
@@ -163,9 +165,9 @@ Polymer({
         }
         // need to uncheck all the boxes or shit goes wonky
         this.$.selector.clearSelection(); // that takes care of the selected state but not the boxes
-        // how do i clear the boxes when i can't talk to them? 
+        // how do i clear the boxes when i can't talk to them?
     },
 
 });
-     
+
 </script>
