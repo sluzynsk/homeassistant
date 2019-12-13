@@ -8,11 +8,16 @@ views:
         type: weather-forecast
       - entities:
           - entity: binary_sensor.ring_front_door_ding
-            show_last_changed: true
           - entity: binary_sensor.ring_front_door_motion
-            show_last_changed: true
         title: Front Door
         type: glance
+      - entities:
+          - person.crystal_luzynski
+          - person.sarah_luzynski
+          - person.steve_luzynski
+        title: People
+        type: entities
+        show_header_toggle: false
       - type: picture-entity
         entity: camera.front_door
         camera_view: live
@@ -32,18 +37,24 @@ views:
       - type: plant-status
         entity: plant.office
         name: Office Plant
-      - type: custom:light-with-profiles
-        title: Office Light
+      - type: entities
         entities:
+          - entity: sensor.circadian_values
           - entity: light.office_lights
-            name: 'Overhead Lights'
-            profiles:
-              - name: relax
-                icon: mdi:meditation
-              - name: energize
-                icon: mdi:bike
-              - name: reading
-                icon: mdi:library
+        show_header_toggle: false
+        title: Overhead Light
+#      - type: custom:light-with-profiles
+#        title: Office Light
+#        entities:
+#          - entity: light.office_lights
+#            name: 'Overhead Lights'
+#            profiles:
+#              - name: relax
+#                icon: mdi:meditation
+#              - name: energize
+#                icon: mdi:bike
+#              - name: reading
+#                icon: mdi:library
       - type: light
         entity: light.wledoffice
         name: Office WLed
@@ -94,6 +105,11 @@ views:
     title: Living Room
   - badges: []
     cards:
+      - type: "custom:light-entity-row"
+        entity: light.sarah_lights
+        showColorPicker: true # shows color picker if supported
+        showColorSliders: false # shows hue/saturation sliders if supported
+        showColorTemp: true
       - entities:
           - sensor.sarah_s_room_temperature
           - sensor.sarah_s_room_humidity
@@ -157,13 +173,13 @@ views:
               - 0
               - 255
               - 0
-              brightness: 220
+              brightness: 255
               transition: 1
             - rgb_color:
               - 255
               - 0
               - 0
-              brightness: 220
+              brightness: 255
               transition: 1
         - entity: light.splash_light_2
         - type: 'custom:rgb-light-card'
@@ -173,17 +189,43 @@ views:
               - 0
               - 255
               - 0
-              brightness: 220
+              brightness: 255
               transition: 1
             - rgb_color:
               - 255
               - 0
               - 0
-              brightness: 220
+              brightness: 255
               transition: 1
         title: Front Yard Splash Lights
         type: entities
-    show_header_toggle: false
+      - entities:
+        - entity: light.front_porch_light
+          type: 'custom:rgb-light-card'
+          colors:
+            - rgb_color:
+              - 0
+              - 255
+              - 0
+              brightness: 255
+              transition: 1
+            - kelvin: 6000
+              brightness: 220
+              transition: 1
+              icon_color: '#ffffff'
+            - kelvin: 2700
+              brightness: 220
+              transition: 1
+              icon_color: '#ffa957'
+            - rgb_color:
+              - 0
+              - 0
+              - 255
+              brightness: 255
+              transition: 1
+        title: Front Porch Light
+        type: entities
+
     title: Front Yard
     path: front-yard
   - badges: []
@@ -216,6 +258,9 @@ views:
 # Custom lovelace cards, etc.
 resources:
   - url: https://cdn.jsdelivr.net/npm/rgb-light-card
+    type: js
+
+  - url: /community_plugin/light-entity-row/light-entity-row.js
     type: js
 
   - type: module

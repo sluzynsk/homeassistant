@@ -20,9 +20,8 @@
     2. Test themes.
     3. Select all checkbox for the super brave.
     4. Move that damned button over a little.
-    5. Display the current Tasmota version in the banner so you can tell if you actually need to update shit.
-    6. Sortable columns.
-    7. Maybe add more shit to the display, like uptime or whatever. I dunno.
+    5. Sortable columns.
+    6. Maybe add more shit to the display, like uptime or whatever. I dunno.
 -->
 
 <dom-module id='ha-panel-tasmota'>
@@ -80,13 +79,6 @@
                 </fieldset>
                 </div>
                 <mwc-button hass='[[hass]]' raised='' type='submit' on-tap='updatePressed'>Update checked</mwc-button>
- <!--               <fieldset>
-                    <legend>Selected for upgrade</legend>
-                    <template is="dom-repeat" items='{{selected}}'>
-                            <span><p>{{item.entity_id}}</p></span>
-                    </template>
-                </fieldset>
--->
             </form>
             </div>
         </app-header-layout>
@@ -146,7 +138,6 @@ Polymer({
     },
 
     updatePressed: function(ev) {
-        // URL for upgrade looks like http://10.0.0.51/u1?o=http%3A%2F%2Fthehackbox.org%2Ftasmota%2Frelease%2Ftasmota.bin
         ev.stopPropagation();
         let item = new Object();
         const addedParam = {

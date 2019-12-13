@@ -172,6 +172,12 @@ light:
     entities:
       - light.office_lohas_1
       - light.office_lohas_2
+  - platform: group
+    name: Sarah Lights
+    entities:
+      - light.sarah_bulb_1
+      - light.sarah_bulb_2
+      - light.sarah_bulb_3
 
 panel_custom:
   - name: tasmota
@@ -182,3 +188,11 @@ panel_custom:
 vera:
   vera_controller_url: http://10.0.133:3480/
 
+circadian_lighting:
+  max_colortemp: 6500
+  min_colortemp: 2000
+
+switch:
+  - platform: circadian_lighting
+    lights_ct:
+      - light.office_lights
