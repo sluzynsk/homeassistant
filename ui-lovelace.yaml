@@ -7,22 +7,12 @@ views:
         name: 'Blue Springs, MO'
         type: weather-forecast
       - entities:
-          - entity: binary_sensor.ring_front_door_ding
-          - entity: binary_sensor.ring_front_door_motion
-        title: Front Door
-        type: glance
-      - entities:
           - person.crystal_luzynski
           - person.sarah_luzynski
           - person.steve_luzynski
         title: People
         type: entities
         show_header_toggle: false
-      - type: picture-entity
-        entity: camera.front_door
-        camera_view: live
-        state_filter:
-          - null
     path: default_view
     title: Home
   - badges: []
@@ -41,20 +31,10 @@ views:
         entities:
           - entity: sensor.circadian_values
           - entity: light.office_lights
+          - entity: binary_sensor.office_door
+          - entity: binary_sensor.office_window
         show_header_toggle: false
         title: Overhead Light
-#      - type: custom:light-with-profiles
-#        title: Office Light
-#        entities:
-#          - entity: light.office_lights
-#            name: 'Overhead Lights'
-#            profiles:
-#              - name: relax
-#                icon: mdi:meditation
-#              - name: energize
-#                icon: mdi:bike
-#              - name: reading
-#                icon: mdi:library
       - type: light
         entity: light.wledoffice
         name: Office WLed
@@ -81,12 +61,16 @@ views:
             tap_action:
               action: call-service
               service: scene.turn_on
+              service_data:
+                entity_id: scene.33310
           - entity: scene.15890
             type: entity-button
             name: Close all
             tap_action:
               action: call-service
               service: scene.turn_on
+              service_data:
+                entity_id: scene.15890
         type: glance
         title: Shades
       - type: entity-button
@@ -105,11 +89,6 @@ views:
     title: Living Room
   - badges: []
     cards:
-      - type: "custom:light-entity-row"
-        entity: light.sarah_lights
-        showColorPicker: true # shows color picker if supported
-        showColorSliders: false # shows hue/saturation sliders if supported
-        showColorTemp: true
       - entities:
           - sensor.sarah_s_room_temperature
           - sensor.sarah_s_room_humidity
@@ -199,33 +178,6 @@ views:
               transition: 1
         title: Front Yard Splash Lights
         type: entities
-      - entities:
-        - entity: light.front_porch_light
-          type: 'custom:rgb-light-card'
-          colors:
-            - rgb_color:
-              - 0
-              - 255
-              - 0
-              brightness: 255
-              transition: 1
-            - kelvin: 6000
-              brightness: 220
-              transition: 1
-              icon_color: '#ffffff'
-            - kelvin: 2700
-              brightness: 220
-              transition: 1
-              icon_color: '#ffa957'
-            - rgb_color:
-              - 0
-              - 0
-              - 255
-              brightness: 255
-              transition: 1
-        title: Front Porch Light
-        type: entities
-
     title: Front Yard
     path: front-yard
   - badges: []

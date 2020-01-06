@@ -97,3 +97,16 @@
     domain: switch
     entity_id: switch.retro_lamp
     type: turn_off
+- id: '1578327288889'
+  alias: Office Lights
+  description: Turn on lights when door opens. Ignore door close since I keep it closed
+    anyway.
+  trigger:
+  - entity_id: binary_sensor.office_door
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - entity_id: light.office_lights
+    service: light.turn_on

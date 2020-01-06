@@ -2,4 +2,5 @@ people:
   name: family
   entities:
     - device_tracker.galaxy_s10
-    - device_tracker.steve_galaxy_s10
+    - device_tracker.sm_g975u
+    - device_tracker.sarah_luzynskis_iphone

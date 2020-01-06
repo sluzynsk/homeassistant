@@ -6,6 +6,10 @@ d = {
     "DF3E91": ["office_remote_b3", "ON", "false"],
     "DF3E92": ["office_remote_b4", "ON", "false"],
     "727D06": ["living_room_remote_on", "ON", "false"],
+    "91F40E": ["office_door", "OFF", "false"],
+    "91F40A": ["office_door", "ON", "false"],
+    "97720E": ["office_window", "OFF", "false"],
+    "97720A": ["office_window", "ON", "false"],
 }
 
 p = data.get("payload")

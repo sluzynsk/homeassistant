@@ -49,15 +49,7 @@ script: !include scripts.yaml
 frontend:
   themes: !include_dir_merge_named themes
 
-ring:
-  username: !secret ring_email
-  password: !secret ring_password
-
-sensor:
-  platform: ring
-
 binary_sensor:
-  - platform: ring
 
   - platform: mqtt
     name: 'Xmas_tree_remote_on'
@@ -94,8 +86,15 @@ binary_sensor:
     state_topic: 'home/living_room_remote_on'
     off_delay: 1
 
-camera:
-  - platform: ring
+  - platform: mqtt
+    name: 'Office Door'
+    state_topic: 'home/office_door'
+    device_class: door
+
+  - platform: mqtt
+    name: 'Office Window'
+    state_topic: 'home/office_window'
+    device_class: window
 
 plant:
   office:
@@ -140,15 +139,6 @@ mqtt:
     topic: 'hass/status'
     payload: 'offline'
 
-device_tracker:
-  - platform: xfinity
-    host: 10.0.0.1
-    new_device_defaults:
-      track_new_devices: false
-      hide_if_away: false
-    interval_seconds: 30
-    consider_home: 180
-
 telegram_bot:
   - platform: polling
     api_key: !secret telegram_api_token
@@ -172,12 +162,6 @@ light:
     entities:
       - light.office_lohas_1
       - light.office_lohas_2
-  - platform: group
-    name: Sarah Lights
-    entities:
-      - light.sarah_bulb_1
-      - light.sarah_bulb_2
-      - light.sarah_bulb_3
 
 panel_custom:
   - name: tasmota
