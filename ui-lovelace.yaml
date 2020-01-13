@@ -2,59 +2,67 @@
 title: Home
 views:
   - badges: []
+    title: Home
+    path: default_view
     cards:
-      - entity: weather.dark_sky
+      - type: weather-forecast
+        entity: weather.dark_sky
         name: 'Blue Springs, MO'
-        type: weather-forecast
-      - entities:
+      - type: entities
+        title: People
+        show_header_toggle: false
+        entities:
           - person.crystal_luzynski
           - person.sarah_luzynski
           - person.steve_luzynski
-        title: People
-        type: entities
-        show_header_toggle: false
-    path: default_view
-    title: Home
+
   - badges: []
+    title: Office
+    path: office
     cards:
-      - entities:
+      - type: entities
+        title: Office
+        show_header_toggle: false
+        entities:
           - entity: sensor.basement_temperature
           - entity: sensor.basement_humidity
           - entity: binary_sensor.office_motion_sensor_9
-        show_header_toggle: false
-        title: Office
-        type: entities
+          - entity: binary_sensor.office_door
+          - entity: binary_sensor.office_window
       - type: plant-status
-        entity: plant.office
         name: Office Plant
+        entity: plant.office
       - type: entities
+        title: Overhead Light
+        show_header_toggle: false
         entities:
           - entity: sensor.circadian_values
           - entity: light.office_lights
-          - entity: binary_sensor.office_door
-          - entity: binary_sensor.office_window
-        show_header_toggle: false
-        title: Overhead Light
+          - entity: switch.office_sonoff_mini
+            name: "Office Light Switch"
       - type: light
-        entity: light.wledoffice
         name: Office WLed
-      - entity: media_player.office_home_mini
-        type: media-control
-    path: office
-    title: Office
+        entity: light.wledoffice
+      - type: media-control
+        entity: media_player.office_home_mini
+
   - badges: []
+    title: Living Room
+    path: living-room
     cards:
-      - entity: media_player.family_room
-        type: media-control
-      - entity: media_player.xbr_75x850e
-        type: media-control
-      - entities:
+      - type: media-control
+        entity: media_player.family_room
+      - type: media-control
+        entity: media_player.xbr_75x850e
+      - type: entities
+        title: Environment
+        show_header_toggle: false
+        entities:
           - sensor.living_room_temperature
           - sensor.living_room_humidity
-        show_header_toggle: false
-        title: Environment
-        type: entities
-      - entities:
+      - type: glance
+        title: Shades
+        entities:
           - entity: scene.33310
             type: entity-button
             name: Open all
@@ -71,79 +79,99 @@ views:
               service: scene.turn_on
               service_data:
                 entity_id: scene.15890
-        type: glance
-        title: Shades
-      - type: entity-button
-        entity: switch.retro_lamp
-        name: Retro Lamp
-        icon: mdi:lamp
-      - type: entity-button
-        entity: switch.behind_couch
-        name: Ikea Lamps Behind Couch
-        icon: mdi:lamp
-      - type: entity-button
-        entity: switch.xmas_tree
-        name: Xmas Tree
-        icon: mdi:pine-tree
-    path: living-room
-    title: Living Room
+      - type: glance
+        title: Lights
+        entities:
+        - entity: switch.retro_lamp
+          icon: mdi:floor-lamp
+        - entity: switch.behind_couch
+          icon: mdi:floor-lamp-dual
+
   - badges: []
-    cards:
-      - entities:
-          - sensor.sarah_s_room_temperature
-          - sensor.sarah_s_room_humidity
-        show_header_toggle: false
-        title: Sarah's Room
-        type: entities
-    path: sarahs-room
     title: Sarah's Room
-  - badges: []
+    path: sarahs-room
     cards:
-      - entity: media_player.kitchen
-        type: media-control
-      - entity: light.kitchen_led
-        type: light
-    path: kitchen
+      - type: glance
+        entities:
+          - entity: sensor.sarah_s_room_temperature
+          - entity: sensor.sarah_s_room_humidity
+
+  - badges: []
     title: Kitchen
-  - badges: []
+    path: kitchen
     cards:
-      - entities:
-          - sensor.master_bedroom_temperature
-          - sensor.master_bedroom_humidity
-        show_header_toggle: false
-        title: Master Bedroom
-        type: entities
-      - entities:
-          - binary_sensor.sleepnumber_steve_steve_is_in_bed
-          - binary_sensor.sleepnumber_steve_crystal_is_in_bed
-        title: Bed
-        type: entities
-        show_header_toggle: false
-      - entity: media_player.master_bedroom
-        type: media-control
-    path: master-bedroom
+      - type: media-control
+        entity: media_player.kitchen
+      - type: light
+        entity: light.kitchen_led
+
+  - badges: []
     title: Master Bedroom
-  - badges: []
+    path: master-bedroom
     cards:
-      - entities:
-        - lock.back_door_8
-        type: entities
+      - type: glance
+        title: Environment
+        entities:
+          - entity: sensor.master_bedroom_temperature
+          - entity: sensor.master_bedroom_humidity
+      - type: glance
+        title: Bed
+        entities:
+          - entity: binary_sensor.sleepnumber_steve_steve_is_in_bed
+          - entity: binary_sensor.sleepnumber_steve_crystal_is_in_bed
+      - type: entities
+        title: Closets
         show_header_toggle: false
-        title: Back Door Lock
+        entities:
+          - entity: light.my_closet_bulb
+            name: My Closet Bulb
+          - binary_sensor.my_closet
+          - entity: light.c_closet_bulb
+            name: Crystal Closet Bulb
+          - binary_sensor.crystal_closet
+      - type: media-control
+        entity: media_player.master_bedroom
+
+  - badges: []
     title: Basement
     path: basement
-  - badges: []
     cards:
-      - entities:
-        - binary_sensor.utility_room_water_10
+      - type: glance
+        title: Back Door
+        entities:
+        - entity: lock.back_door_8
+      - type: entities
+        title: 3d Printer Status
         show_header_toggle: false
-        type: entities
-        title: Water Sensors
-    title: Utility Room
-    path: utility-room
+        entities:
+        - binary_sensor.octoprint_printing
+        - binary_sensor.octoprint_printing_error
+        - sensor.octoprint_current_state
+        - sensor.octoprint_job_percentage
+        - sensor.octoprint_time_elapsed
+        - sensor.octoprint_time_remaining
+        - sensor.octoprint_target_bed_temp
+        - sensor.octoprint_actual_bed_temp
+        - sensor.octoprint_target_tool0_temp
+        - sensor.octoprint_actual_tool0_temp
+
   - badges: []
+    title: Utility Room
+    path: utility_room
     cards:
-      - entities:
+      - type: glance
+        title: Water Sensors
+        entities:
+        - entity: binary_sensor.utility_room_water_10
+
+  - badges: []
+    title: Front Yard
+    path: front-yard
+    cards:
+      - type: entities
+        title: Splash Lights
+        show_header_toggle: false
+        entities:
         - entity: light.splash_light_1
         - type: 'custom:rgb-light-card'
           entity: light.splash_light_1
@@ -176,24 +204,15 @@ views:
               - 0
               brightness: 255
               transition: 1
-        title: Front Yard Splash Lights
-        type: entities
-    title: Front Yard
-    path: front-yard
+
   - badges: []
+    title: History Graphs
+    path: history-graphs
+    panel: true
     cards:
-      - entities:
-          - entity: light.wled_porch
-          - entity: sensor.wled_porch_estimated_current
-          - entity: sensor.wled_porch_free_memory
-        title: Deck LED Strip
-        type: entities
-        show_header_toggle: false
-    title: Back Yard
-    path: back-yard
-  - badges: []
-    cards:
-      - entities:
+      - type: history-graph
+        title: Temperature History
+        entities:
           - sensor.sarah_s_room_temperature
           - sensor.sarah_s_room_humidity
           - sensor.basement_temperature
@@ -202,10 +221,6 @@ views:
           - sensor.master_bedroom_humidity
           - sensor.living_room_temperature
           - sensor.living_room_humidity
-        type: history-graph
-    panel: true
-    path: temperature-graphs
-    title: Temperature History
 
 # Custom lovelace cards, etc.
 resources:
@@ -217,10 +232,3 @@ resources:
 
   - type: module
     url: /local/community/lovelace-light-with-profiles/light-with-profiles.js
-
-# included here so custom light profile card can show active profile
-light_profiles:
-  relax: '0.5119,0.4147,144'
-  concentrate: '0.5119,0.4147,219'
-  energize: '0.368,0.3686,203'
-  reading: '0.4448,0.4066,240'

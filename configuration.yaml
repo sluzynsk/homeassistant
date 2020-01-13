@@ -51,6 +51,11 @@ frontend:
 
 binary_sensor:
 
+  - platform: octoprint
+    monitored_conditions:
+      - Printing
+      - Printing Error
+
   - platform: mqtt
     name: 'Xmas_tree_remote_on'
     state_topic: 'home/remote_1_button_1'
@@ -82,8 +87,8 @@ binary_sensor:
     off_delay: 1
 
   - platform: mqtt
-    name: 'Living_room_remote_on'
-    state_topic: 'home/living_room_remote_on'
+    name: 'Living_room_remote'
+    state_topic: 'home/living_room_remote'
     off_delay: 1
 
   - platform: mqtt
@@ -95,6 +100,16 @@ binary_sensor:
     name: 'Office Window'
     state_topic: 'home/office_window'
     device_class: window
+
+  - platform: mqtt
+    name: 'My Closet'
+    state_topic: 'home/my_closet'
+    device_class: door
+
+  - platform: mqtt
+    name: "Crystal Closet"
+    state_topic: 'home/crystal_closet'
+    device_class: door
 
 plant:
   office:
@@ -180,3 +195,15 @@ switch:
   - platform: circadian_lighting
     lights_ct:
       - light.office_lights
+
+octoprint:
+  host: 10.0.0.44
+  api_key: 2C2F3856FCDB4D82A49E3F750872CBF7
+  bed: true
+  number_of_tools: 1
+
+camera:
+  - platform: mjpeg
+    name: OctoPrint
+    still_image_url: http://10.0.0.44/webcam/?action=snapshot
+    mjpeg_url: http://10.0.0.44/webcam/?action=stream

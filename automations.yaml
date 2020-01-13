@@ -108,5 +108,87 @@
     to: 'on'
   condition: []
   action:
-  - entity_id: light.office_lights
+  - entity_id: switch.office_sonoff_mini
+    service: switch.turn_on
+- id: '1578795783188'
+  alias: My Closet On when door open daytime
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.my_closet
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - after: '8:00'
+    before: '20:30'
+    condition: time
+  action:
+  - data:
+      brightness_pct: 100%
+    entity_id: light.my_closet_bulb
     service: light.turn_on
+- id: '1578795816492'
+  alias: My Closet off when door closed
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.my_closet
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - entity_id: light.my_closet_bulb
+    service: light.turn_off
+- id: '1578796877324'
+  alias: Crystal Closet On With Door Open
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.crystal_closet
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - entity_id: light.c_closet_bulb
+    service: light.turn_on
+- id: '1578796925401'
+  alias: Crystal Closet Off with Door Shut
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.crystal_closet
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - entity_id: light.c_closet_bulb
+    service: light.turn_off
+- id: '1578925720315'
+  alias: My Closet On With Door Open Nighttime
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.my_closet
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - after: '23:30'
+    before: '8:00'
+    condition: time
+  action:
+  - data:
+      brightness_pct: 33%
+    entity_id: light.my_closet_bulb
+    service: light.turn_on
+- id: '1578934076812'
+  alias: Living Room Lights
+  description: Specifically the lights behind the couch
+  trigger:
+  - entity_id: binary_sensor.living_room_remote
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - entity_id: switch.behind_couch
+    service: switch.toggle
