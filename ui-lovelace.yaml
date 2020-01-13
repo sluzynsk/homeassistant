@@ -8,13 +8,12 @@ views:
       - type: weather-forecast
         entity: weather.dark_sky
         name: 'Blue Springs, MO'
-      - type: entities
+      - type: glance
         title: People
-        show_header_toggle: false
         entities:
-          - person.crystal_luzynski
-          - person.sarah_luzynski
-          - person.steve_luzynski
+          - entity: person.crystal_luzynski
+          - entity: person.sarah_luzynski
+          - entity: person.steve_luzynski
 
   - badges: []
     title: Office
@@ -84,8 +83,12 @@ views:
         entities:
         - entity: switch.retro_lamp
           icon: mdi:floor-lamp
+          tap_action:
+            action: toggle
         - entity: switch.behind_couch
           icon: mdi:floor-lamp-dual
+          tap_action:
+            action: toggle
 
   - badges: []
     title: Sarah's Room
@@ -140,6 +143,8 @@ views:
         title: Back Door
         entities:
         - entity: lock.back_door_8
+          tap_action:
+            action: toggle
       - type: entities
         title: 3d Printer Status
         show_header_toggle: false
