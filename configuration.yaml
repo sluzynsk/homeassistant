@@ -190,9 +190,11 @@ vera:
 circadian_lighting:
   max_colortemp: 6500
   min_colortemp: 2000
+  transition: 10
 
 switch:
   - platform: circadian_lighting
+    name: office
     lights_ct:
       - light.office_lights
 
