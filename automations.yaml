@@ -1,3 +1,5 @@
+---
+
 - id: '1573571236003'
   alias: Daily Backups
   description: Do daily backups to Google Drive
@@ -27,33 +29,6 @@
   - service: python_script.rfbridge_demux
     data_template:
       payload: '{{trigger.payload_json.RfReceived.Data}}'
-
-
-- id: '1574804485540'
-  alias: Xmas Tree On
-  description: ''
-  trigger:
-  - entity_id: binary_sensor.xmas_tree_remote_on
-    platform: state
-    to: 'on'
-  condition: []
-  action:
-  - data:
-      entity_id: switch.xmas_tree
-    service: switch.turn_on
-
-- id: '1574805062180'
-  alias: Xmas Tree Off
-  description: ''
-  trigger:
-  - entity_id: binary_sensor.xmas_tree_remote_off
-    platform: state
-    to: 'on'
-  condition: []
-  action:
-  - data:
-      entity_id: switch.xmas_tree
-    service: switch.turn_off
 
 - id: '1575669296134'
   alias: Turn on kitchen led at sunset
@@ -116,9 +91,17 @@
     entity_id: switch.circadian_lighting_office
   - service: light.turn_on
     entity_id: light.office_lights
-    data_template:
-      kelvin: "{{ state_attr('sensor.circadian_values', 'colortemp') | int }}"
-      brightness_pct: "{{ state_attr('switch.circadian_lighting_[...]', 'brightness') | int }}"
+
+- id: '1578223342231'
+  alias: Office Light Switch
+  description: Make the office light switch do what one would expect from a proper switch
+  trigger:
+  - entity_id: binary_sensor.office_sonoff_mini_switch1
+    platform: state
+  condition: []
+  action:
+  - service: light.toggle
+    entity_id: light.office_lights
 
 - id: '1578795783188'
   alias: My Closet On when door open daytime
@@ -250,4 +233,3 @@
   - delay: '1'
   - service: light.turn_on
     entity_id: light.office_lights
-

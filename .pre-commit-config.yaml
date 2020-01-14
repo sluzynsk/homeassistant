@@ -7,12 +7,12 @@ repos:
     rev: v2.3.0
     hooks:
       - id: trailing-whitespace
-#      - id: end-of-file-fixer
-#       exclude: .HA_VERSION
+      - id: end-of-file-fixer
+        exclude: .HA_VERSION
       - id: check-added-large-files
       - id: check-json
       - id: check-merge-conflict
-        #      - id: check-symlinks
+      - id: check-symlinks
       - id: mixed-line-ending
       - id: check-xml
       - id: check-yaml
