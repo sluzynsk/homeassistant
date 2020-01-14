@@ -24,7 +24,9 @@ views:
         show_header_toggle: false
         entities:
           - entity: sensor.basement_temperature
+            name: "Office Temperature"
           - entity: sensor.basement_humidity
+            name: "Office Humidity"
           - entity: binary_sensor.office_motion_sensor_9
           - entity: binary_sensor.office_door
           - entity: binary_sensor.office_window
@@ -90,6 +92,15 @@ views:
           icon: mdi:floor-lamp-dual
           tap_action:
             action: toggle
+        - entity: light.living_room_north_downlight
+          tap_action:
+            action: toggle
+        - entity: light.living_room_south_downlight
+          tap_action:
+            action: toggle
+        - entity: light.garage_entry_downlight
+          tap_action:
+            action: toggle
 
   - badges: []
     title: Sarah's Room
@@ -99,6 +110,12 @@ views:
         entities:
           - entity: sensor.sarah_s_room_temperature
           - entity: sensor.sarah_s_room_humidity
+      - type: glance
+        title: Lights
+        entities:
+          - entity: light.1
+          - entity: light.2
+          - entity: light.3
 
   - badges: []
     title: Kitchen
@@ -146,6 +163,15 @@ views:
         title: Back Door
         entities:
         - entity: lock.back_door_8
+          tap_action:
+            action: toggle
+      - type: gauge
+        entity: sensor.basement_motion_temperature
+        name: "Basement Temperature"
+      - type: glance
+        title: Lights
+        entities:
+        - entity: light.basement_stairs_downlight
           tap_action:
             action: toggle
       - type: entities
@@ -223,12 +249,16 @@ views:
         entities:
           - sensor.sarah_s_room_temperature
           - sensor.sarah_s_room_humidity
-          - sensor.basement_temperature
-          - sensor.basement_humidity
+          - entity: sensor.basement_temperature
+            name: "Office Temperature"
+          - entity: sensor.basement_humidity
+            name: "Office Humidity"
           - sensor.master_bedroom_temperature
           - sensor.master_bedroom_humidity
           - sensor.living_room_temperature
           - sensor.living_room_humidity
+          - entity: sensor.basement_motion_temperature
+            name: "Basement Temperature"
 
 # Custom lovelace cards, etc.
 resources:
