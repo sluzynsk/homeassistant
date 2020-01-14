@@ -124,7 +124,7 @@
     condition: time
   action:
   - data:
-      brightness_pct: 100%
+      brightness_pct: 100
     entity_id: light.my_closet_bulb
     service: light.turn_on
 - id: '1578795816492'
@@ -172,12 +172,12 @@
     platform: state
     to: 'on'
   condition:
-  - after: '23:30'
+  - after: '20:30'
     before: '8:00'
     condition: time
   action:
   - data:
-      brightness_pct: 33%
+      brightness_pct: 33
     entity_id: light.my_closet_bulb
     service: light.turn_on
 - id: '1578934076812'

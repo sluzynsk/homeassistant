@@ -53,12 +53,11 @@ views:
         entity: media_player.family_room
       - type: media-control
         entity: media_player.xbr_75x850e
-      - type: entities
+      - type: glance
         title: Environment
-        show_header_toggle: false
         entities:
-          - sensor.living_room_temperature
-          - sensor.living_room_humidity
+          - entity: sensor.living_room_temperature
+          - entity: sensor.living_room_humidity
       - type: glance
         title: Shades
         entities:
@@ -82,10 +81,12 @@ views:
         title: Lights
         entities:
         - entity: switch.retro_lamp
+          name: "Retro Lamp"
           icon: mdi:floor-lamp
           tap_action:
             action: toggle
         - entity: switch.behind_couch
+          name: "Ikea Lights"
           icon: mdi:floor-lamp-dual
           tap_action:
             action: toggle
@@ -121,7 +122,9 @@ views:
         title: Bed
         entities:
           - entity: binary_sensor.sleepnumber_steve_steve_is_in_bed
+            icon: mdi:bed-king
           - entity: binary_sensor.sleepnumber_steve_crystal_is_in_bed
+            icon: mdi:bed-king
       - type: entities
         title: Closets
         show_header_toggle: false
