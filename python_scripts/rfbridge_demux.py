@@ -14,6 +14,8 @@ d = {
     "92E70E": ["crystal_closet", "OFF", "true"],
     "92E70A": ["crystal_closet", "ON", "true"],
     "FF1901": ["living_room_remote", "ON", "false"],
+    "950D0E": ["laundry_door", "OFF", "true"],
+    "950D0A": ["laundry_door", "ON", "true"],
 }
 
 p = data.get("payload")

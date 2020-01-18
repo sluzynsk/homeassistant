@@ -38,7 +38,7 @@
     platform: sun
   condition: []
   action:
-  - service: switch.turn_on
+  - service: light.turn_on
     entity_id: light.kitchen_led
 
 - id: '1575669351282'
@@ -49,7 +49,7 @@
     platform: time
   condition: []
   action:
-  - service: switch.turn_off
+  - service: light.turn_off
     entity_id: light.kitchen_led
 
 - id: '1576080686658'
@@ -117,9 +117,9 @@
     condition: time
   action:
   - service: light.turn_on
+    entity_id: light.my_closet_bulb
     data:
       brightness_pct: 100
-    entity_id: light.my_closet_bulb
 
 - id: '1578795816492'
   alias: My Closet off when door closed
@@ -135,17 +135,14 @@
     entity_id: light.my_closet_bulb
 
 - id: '1578796877324'
-  alias: Crystal Closet On With Door Open - Daytime
+  alias: Crystal Closet On With Door Open
   description: ''
   trigger:
   - entity_id: binary_sensor.crystal_closet
     from: 'off'
     platform: state
     to: 'on'
-  condition:
-  - after: '9:00'
-    before: '20:30'
-    condition: time
+  condition: []
   action:
   - service: light.turn_on
     entity_id: light.c_closet_bulb
@@ -185,7 +182,7 @@
 
 - id: '1578934076812'
   alias: Living Room Lights
-  description: Specifically the lights behind the couch
+  description: Lights behind the couch toggle with one button remote
   trigger:
   - entity_id: binary_sensor.living_room_remote
     from: 'off'
@@ -195,24 +192,6 @@
   action:
   - service: switch.toggle
     entity_id: switch.behind_couch
-
-- id: '1579010849983'
-  alias: Crystal Closet On With Door Open - Nighttime
-  description: ''
-  trigger:
-  - entity_id: binary_sensor.crystal_closet
-    from: 'off'
-    platform: state
-    to: 'on'
-  condition:
-  - after: '20:30'
-    before: '9:00'
-    condition: time
-  action:
-  - service: light.turn_on
-    entity_id: light.c_closet_bulb
-    data:
-      brightness_pct: 33
 
 - id: '1579028749851'
   alias: flash my office lights when motion is detected
@@ -233,3 +212,31 @@
   - delay: '1'
   - service: light.turn_on
     entity_id: light.office_lights
+
+- id: '1578796877387'
+  alias: Laundry Room On With Door Open
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.laundry_room
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: light.turn_on
+    entity_id: light.laundry_lights
+    data:
+      brightness_pct: 80
+
+- id: '1578796925422'
+  alias: Laundry Room Off with Door Shut
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.laundry_room
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - service: light.turn_off
+    entity_id: light.laundry_lights

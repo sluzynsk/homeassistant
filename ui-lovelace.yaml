@@ -39,7 +39,6 @@ views:
         entities:
           - entity: switch.circadian_lighting_office
             name: Circadian Adjustments
-          - entity: sensor.circadian_values
           - entity: light.office_lights
           - entity: switch.office_sonoff_mini
             name: "Office Light Switch"
@@ -127,6 +126,13 @@ views:
         entity: media_player.kitchen
       - type: light
         entity: light.kitchen_led
+      - type: glance
+        title: Laundry Room
+        entities:
+          - entity: light.laundry_lights
+            tap_action:
+              action: toggle
+          - entity: binary_sensor.laundry_room
 
   - badges: []
     title: Master Bedroom
