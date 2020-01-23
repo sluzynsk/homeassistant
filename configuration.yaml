@@ -159,17 +159,6 @@ mqtt:
     topic: 'hass/status'
     payload: 'offline'
 
-telegram_bot:
-  - platform: polling
-    api_key: !secret telegram_api_token
-    allowed_chat_ids:
-      - !secret telegram_chat_id
-
-notify:
-  - name: telegram
-    platform: telegram
-    chat_id: !secret telegram_chat_id
-
 weather:
   - platform: darksky
     api_key: b989fe8800c82df65727932a5d1d1118
