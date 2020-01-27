@@ -125,8 +125,17 @@ views:
     cards:
       - type: media-control
         entity: media_player.kitchen
-      - type: light
-        entity: light.kitchen_led
+      - type: glance
+        title: Lights
+        entities:
+          - entity: light.kitchen_led
+            name: Color Strip over Cabinets
+            tap_action:
+              action: toggle
+          - entity: light.kitchen_lights
+            name: Kitchen Lights
+            tap_action:
+              action: toggle
       - type: glance
         title: Laundry Room
         entities:
@@ -181,8 +190,17 @@ views:
         title: Lights
         entities:
         - entity: light.basement_stairs_downlight
+          name: Stairs
           tap_action:
             action: toggle
+        - entity: switch.storage_sonoff_mini
+          name: Storage Room Lights
+          icon: mdi:lightbulb
+          tap_action:
+            action: toggle
+        - entity: binary_sensor.storage_room
+          name: Storage Room
+          icon: mdi:door
       - type: entities
         title: 3d Printer Status
         show_header_toggle: false

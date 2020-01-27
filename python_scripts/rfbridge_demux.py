@@ -16,6 +16,8 @@ d = {
     "FF1901": ["living_room_remote", "ON", "false"],
     "950D0E": ["laundry_door", "OFF", "true"],
     "950D0A": ["laundry_door", "ON", "true"],
+    "94830E": ["storage_door", "OFF", "true"],
+    "94830A": ["storage_door", "ON", "true"],
 }
 
 p = data.get("payload")

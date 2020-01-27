@@ -116,6 +116,11 @@ binary_sensor:
     state_topic: 'home/laundry_door'
     device_class: door
 
+  - platform: mqtt
+    name: "Storage Room"
+    state_topic: 'home/storage_door'
+    device_class: door
+
 plant:
   office:
     sensors:
@@ -176,6 +181,13 @@ light:
     entities:
       - light.laundry_bulb_1
       - light.laundry_bulb_2
+  - platform: group
+    name: Kitchen Lights
+    entities:
+      - light.hue_ambiance_downlight_1
+      - light.hue_ambiance_downlight_2
+      - light.hue_ambiance_downlight_3
+      - light.hue_ambiance_downlight_4
 
 panel_custom:
   - name: tasmota

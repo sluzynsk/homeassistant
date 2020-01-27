@@ -240,3 +240,29 @@
   action:
   - service: light.turn_off
     entity_id: light.laundry_lights
+
+- id: '7573212710929'
+  alias: Storage Room On With Door Open
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.storage_room
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: switch.turn_on
+    entity_id: switch.storage_sonoff_mini
+
+- id: '3724804963566'
+  alias: Storage Room Off with Door Shut
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.storage_room
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - service: switch.turn_off
+    entity_id: switch.storage_sonoff_mini
