@@ -166,7 +166,7 @@ mqtt:
 
 weather:
   - platform: darksky
-    api_key: b989fe8800c82df65727932a5d1d1118
+    api_key: !secret dark_sky_api
 
 python_script:
 
