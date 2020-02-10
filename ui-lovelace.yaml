@@ -27,7 +27,6 @@ views:
             name: "Office Temperature"
           - entity: sensor.basement_humidity
             name: "Office Humidity"
-          - entity: binary_sensor.office_motion_sensor_9
           - entity: binary_sensor.office_door
           - entity: binary_sensor.office_window
       - type: plant-status
@@ -36,6 +35,7 @@ views:
       - type: entities
         title: Overhead Light
         show_header_toggle: false
+        state_color: true
         entities:
           - entity: switch.circadian_lighting_office
             name: Circadian Adjustments
@@ -89,18 +89,21 @@ views:
           icon: mdi:floor-lamp
           tap_action:
             action: toggle
-        - entity: switch.behind_couch
+        - entity: group.ikea
           name: "Ikea Lights"
           icon: mdi:floor-lamp-dual
           tap_action:
             action: toggle
         - entity: light.living_room_north_downlight
+          name: "North Downlight"
           tap_action:
             action: toggle
         - entity: light.living_room_south_downlight
+          name: "South Downlight"
           tap_action:
             action: toggle
         - entity: light.garage_entry_downlight
+          name: "Garage Entry Downlight"
           tap_action:
             action: toggle
 
@@ -177,12 +180,6 @@ views:
     title: Basement
     path: basement
     cards:
-      - type: glance
-        title: Back Door
-        entities:
-        - entity: lock.back_door_8
-          tap_action:
-            action: toggle
       - type: gauge
         entity: sensor.basement_motion_temperature
         name: "Basement Temperature"
@@ -215,15 +212,6 @@ views:
         - sensor.octoprint_actual_bed_temp
         - sensor.octoprint_target_tool0_temp
         - sensor.octoprint_actual_tool0_temp
-
-  - badges: []
-    title: Utility Room
-    path: utility_room
-    cards:
-      - type: glance
-        title: Water Sensors
-        entities:
-        - entity: binary_sensor.utility_room_water_10
 
   - badges: []
     title: Front Yard

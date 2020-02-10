@@ -130,7 +130,7 @@ plant:
 
 scene:
   platform: hunterdouglas_powerview
-  address: 10.0.0.6
+  address: 10.0.0.248
 
 sleepiq:
   username: !secret sleepiq_username
@@ -194,9 +194,6 @@ panel_custom:
     sidebar_title: Tasmota Devices
     sidebar_icon: mdi:devices
     url_path: tasmota
-
-vera:
-  vera_controller_url: http://10.0.133:3480/
 
 circadian_lighting:
   max_colortemp: 6500

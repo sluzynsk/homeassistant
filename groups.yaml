@@ -1,6 +1,5 @@
-people:
-  name: family
+ikea:
+  name: Living Room Ikea Lights
   entities:
-    - device_tracker.galaxy_s10
-    - device_tracker.sm_g975u
-    - device_tracker.sarah_luzynskis_iphone
+    - switch.behind_couch
+    - switch.front_ikea_light

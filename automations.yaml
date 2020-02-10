@@ -191,7 +191,7 @@
   condition: []
   action:
   - service: switch.toggle
-    entity_id: switch.behind_couch
+    entity_id: group.ikea
 
 - id: '1579028749851'
   alias: flash my office lights when motion is detected
